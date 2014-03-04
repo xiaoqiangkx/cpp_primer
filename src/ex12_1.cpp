@@ -4,19 +4,19 @@ using namespace std;
 
 class Person {
     public:
-        Person(string _name, string _address): name(_name), address(_address) {}
-        string get_name();
-        string get_address();
+        Person(const string &_name, const string &_address): name(_name), address(_address) {}
+        string get_name() const;
+        string get_address() const;
     private:
         string name;
         string address;
 }; 
 
-string Person::get_name() {
+string Person::get_name() const {
     return name;
 }
 
-string Person::get_address() {
+string Person::get_address() const {
     return address;
 }
 
