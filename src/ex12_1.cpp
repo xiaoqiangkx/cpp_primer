@@ -1,14 +1,17 @@
 #include <iostream>
 #include <string>
+#include "test1.cpp"
+#include "test2.cpp"
 using namespace std;
 
 class Person {
     public:
+        typedef string str;
         Person(const string &_name, const string &_address): name(_name), address(_address) {}
         string get_name() const;
         string get_address() const;
     private:
-        string name;
+        str name;
         string address;
 }; 
 
@@ -24,6 +27,7 @@ int main() {
     string name("qingfeng");
     string address("Beijing");
     Person person(name, address);
-    cout << person.get_name() << endl << person.get_address() << endl;
+    Person::str _name = person.get_name();
+    cout << _name << endl << person.get_address() << endl;
     return 0;
 }

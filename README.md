@@ -3,7 +3,7 @@ C++ Primer Notes
 
 Write down notes about C++ Primer book.
 
-> If you know about compiler, you will know what happen to C++.
+> Consider yourseflf as a compiler for static language and find what C++ is used for, you will know what happen to C++.
 
 Contents
 ========
@@ -44,6 +44,8 @@ They use pointer __this__ to point data which is very similar with structure.
 Exercise Section 12-1
 --------------------
 
+**const function**: In order to protect member, const function can only include const function.
 
+**Is our class definitly safe?**: Never, we can use unit test to make sure that our function is safe under most situation. However, if we make our data member to be public, the status of our object is unstable.
 
 
