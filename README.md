@@ -48,4 +48,6 @@ Exercise Section 12-1
 
 **Is our class definitly safe?**: Never, we can use unit test to make sure that our function is safe under most situation. However, if we make our data member to be public, the status of our object is unstable.
 
+**const string**: `const string &data = "hello";` we must use `const` to ensure only-read string.
 
+**Use more private utility function**: for example, `display()` function.
