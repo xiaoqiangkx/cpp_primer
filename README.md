@@ -90,3 +90,19 @@ class Person {
 
 As for `Person p;`, it introduce ambigous.
 
+static
+--------
+
+```cpp
+class Bar {
+    public:
+    // ...
+    private:
+    static Bar mem1; // ok
+    Bar *mem2;
+    // ok
+    Bar mem3;
+    // error
+};
+
+```
