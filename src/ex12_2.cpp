@@ -9,11 +9,15 @@ class Screen {
         Screen& move(int num);
         Screen& display(ostream &os);
         const Screen& display(ostream &os) const;
+        typedef int intp;
+        intp test();
     private:
         void do_display(ostream &os) const {
             os << len <<" " << width << endl;
         }
 };
+
+Screen::intp test() {}
 
 Screen& Screen::move(int num) {
     len += num;
