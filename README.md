@@ -106,3 +106,23 @@ class Bar {
 };
 
 ```
+
+Copy Constructor
+----------------
+
+> copy initialization(=) always create a temp object, then use copy constructor to copy. It's used for being compatiable with C syntax which use `=` to initial data.
+
+```cpp
+string null_book = "9-999-99999-9"; // copy-initialization
+string dots(10, '.'); // direct-initialization
+string empty_copy = string(); // copy-initialization
+string empty_direct; // direct-initialization
+vector<string> svec(5); // copy-initialization
+```
+
+**When should we make our copy-initialization?**
+There are pointer members which need to copy data, or we want to do some extra job besides copy members one by one. 
+
+
+Deconstructor
+----------------
