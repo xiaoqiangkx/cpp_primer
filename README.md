@@ -156,3 +156,9 @@ It's not allowed to override operator on two built-in type.
 
 Chapter 15
 ============
+
+> Inheriance make us define similar classes, while Dynamic Bind let us ignore differences between similar classed.
+
+> There are static type and dynamic type about Reference and Pointer. They may be different.
+
+> Handler
