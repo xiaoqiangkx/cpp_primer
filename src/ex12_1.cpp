@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "test1.cpp"
-#include "test2.cpp"
 using namespace std;
 
 class Person {
