@@ -51,3 +51,27 @@ Exercise Section 12-1
 **const string**: `const string &data = "hello";` we must use `const` to ensure only-read string.
 
 **Use more private utility function**: for example, `display()` function.
+
+Constructor Function
+--------------------
+
+**Initialization list**: we can only initial const and reference variable ininitialization list. It's the only chance.
+
+Code below is wrong. Constructor function has two phases: Initialization and computation. ci and ri is already initialied which can't be assigned in function body(computation phase). Intialization list is Initialization Phase.
+
+```cpp
+class ConstRef {
+    public:
+        ConstRef (int ii) {
+            i = ii;
+            ci = ii;
+            ri = i;
+        }
+    private:
+        int i;
+        const int ci;
+        int &ri;
+};
+``` 
+
+**Besides**: It's faster in initialization list than computation.
