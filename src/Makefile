@@ -1,2 +1,2 @@
 clean:
-	rm ex*^[cpp|c|h]
+	find . -regex "\\./ex.+[^cpp|h|c]" -exec rm -rf {} \;
