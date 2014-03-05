@@ -5,10 +5,13 @@ Write down notes about C++ Primer book.
 
 > Consider yourseflf as a compiler for static language and find what C++ is used for, you will know what happen to C++.
 
+> Use STL more but pointers in modern C++
+
 Contents
 ========
 
 * [Chapter 12](#chapter_12)
+* [Chapter 13](#chapter_13)
 
 
 Chapter 12
@@ -107,6 +110,9 @@ class Bar {
 
 ```
 
+Chapter 13
+===========
+
 Copy Constructor
 ----------------
 
@@ -124,5 +130,16 @@ vector<string> svec(5); // copy-initialization
 There are pointer members which need to copy data, or we want to do some extra job besides copy members one by one. 
 
 
+Assigning Function
+-----------------
+
+
 Deconstructor
-----------------
+------------------
+
+Dangling Pointers
+------------------
+
+Smart Pointers
+--------------------
+
