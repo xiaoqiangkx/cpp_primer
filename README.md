@@ -75,3 +75,18 @@ class ConstRef {
 ``` 
 
 **Besides**: It's faster in initialization list than computation.
+
+Constructor with Default Argument
+---------------------------------
+
+```cpp
+class Person {
+    public:
+    Person(const string &_str = ""): str(_str) {}
+    Person(istream &_is = cin): is(_is) {}
+
+};
+```
+
+As for `Person p;`, it introduce ambigous.
+

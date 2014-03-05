@@ -13,10 +13,22 @@ class Test {
         ifstream &ifs;
 };
 
+class Nodefault {
+    public:
+        explicit Nodefault(int _val): val(_val) {}
+        bool compare(Nodefault t) { return t.get_val() == val; }
+        int get_val() { return val;}
+    private:
+        int val;
+};
+
 int main() {
     double *num = new double(2.0);
     ifstream ifs("test.txt", ifstream::in);
     Test t("hello", 5, num, ifs);
     delete num;
+
+    Nodefault n1(5);
+    cout << "result=" << n1.compare(Nodefault(5)) << endl;
     return 0;
 }
