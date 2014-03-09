@@ -10,12 +10,44 @@ Write down notes about C++ Primer book.
 Contents
 ========
 
+* [Chapter 1 ](#chapter_1)
 * [Chapter 12](#chapter_12)
 * [Chapter 13](#chapter_13)
 * [Chapter 14](#chapter_14)
 * [Chapter 15](#chapter_15)
 * [Chapter 16](#chapter_16)
 
+
+Chapter 1
+==========
+
+Basic Type
+-----------------------
+
+> C++ Standard guarantee minimum sizes. Compiler can use larger size as needed.
+
+**Integral type**: char\short\int\long\long long\ __bool__
+
+It depends on compiler whether `char` is `unsigned char` or `signed char`.
+
+> C++ Standard do not define how to represent `signed` data.
+
+**How to get the value of unsigned?**: module (-1 % 256 = 255)
+
+It is much faster to use `int` than `long`.
+
+**When to use unsigned and signed**: unsigned is more situable to be used as index.
+
+**How to judge a string to be a valid float?**
+
+use `\` to split long cout expression.
+
+The type of `6.` is double.
+
+The 67 in `\67` is Oct. We can use `\000` and `\x000` but Dec.
+
+Variables
+----------
 
 Chapter 12
 =========
