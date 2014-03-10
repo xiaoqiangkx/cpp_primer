@@ -13,6 +13,9 @@ Contents
 * [Chapter 2 ](#chapter_2)
 * [Chapter 3 ](#chapter_3)
 * [Chapter 4 ](#chapter_4)
+* [Chapter 5 ](#chapter_5)
+* [Chapter 6 ](#chapter_6)
+* [Chapter 7 ](#chapter_7)
 * [Chapter 12](#chapter_12)
 * [Chapter 13](#chapter_13)
 * [Chapter 14](#chapter_14)
@@ -162,6 +165,40 @@ int_array *ip = ia;
 ```
 
 **In General**: Take care of edge when using Array and Pointer. Use typedef more. 
+
+
+Chapter 5
+==========
+
+Type Conversion
+---------------
+
+static\_cast, dynamic\_cast, const\_cast, reinterpret\_cast
+
+Chapter 6
+==========
+
+try and catch
+--------------
+Exception will be throw upward oppsite with the backtrace.
+
+debug
+-----------
+
+**NDEBUG**
+`$ gcc -DNDEBUG main.c`
+
+**assert** will excute expression if NDEBUG not defined.
+
+**SOURCE FILE INFO**
+```__FILE__, __LINE__, __TIME__, __DATA__```
+
+
+Chapter 7
+==========
+
+Chapter 8
+==========
 
 Chapter 12
 ==========
