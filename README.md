@@ -10,8 +10,9 @@ Write down notes about C++ Primer book.
 Contents
 ========
 
-* [Chapter 1 ](#chapter_1)
 * [Chapter 2 ](#chapter_2)
+* [Chapter 3 ](#chapter_3)
+* [Chapter 4 ](#chapter_4)
 * [Chapter 12](#chapter_12)
 * [Chapter 13](#chapter_13)
 * [Chapter 14](#chapter_14)
@@ -19,7 +20,7 @@ Contents
 * [Chapter 16](#chapter_16)
 
 
-Chapter 1
+Chapter 2
 ==========
 
 Basic Type
@@ -82,7 +83,7 @@ Header File
 use `#ifdef #define #endif` to avoid load header file more than once.
 
 
-Chapter 2
+Chapter 3
 =========
 
 two library will conflict if they define the same varibles and the file include two namespaces.
@@ -110,13 +111,60 @@ return difference\_type
 
 **In General**:
 
-Use size\_t, difference\_size, string::size\_type and so on.
+Use size\_t, difference\_size, string::size\_type, size\_t and so on.
 Use container more.
 Use Iterator and typedef more.
 
 
+Chapter 4
+==========
+
+vector/iterator vs array/pointer
+--------------------------------
+
+Use vector more. **Is iterator better than pointer?**
+
+1. Size. Size of array is unknown. Array must use const expression to define dimension because the size of array is decided in compiling time.
+2. Security. Intialize pointer to NULL, then you will find the problem when use it without assigning.
+
+const pointer
+-------------
+
+```cpp
+typedef string *pstring;
+const pstring cstr;
+```
+
+equals:
+`string \*const cstr`. 
+
+const pointer to a string. Because pstring is string pointer.
+
+`const int \*ptr` is legal while `int \*const ptr` is not legal which is not initialized.
+
+string and c-style string
+--------------------------
+
+```cpp
+string str = "123";
+const char \*cstr = str.c\_str();
+```
+the change of str make influence on cstr.
+
+mutil-array
+------------
+
+It is just a long array.
+```cpp
+int [3][4] ia = { {0}, {1}, {2} };
+typedef int int_array[4];
+int_array *ip = ia;
+```
+
+**In General**: Take care of edge when using Array and Pointer. Use typedef more. 
+
 Chapter 12
-=========
+==========
 
 > C++ class is able to control initialization, copying, assigning and destorying.
 
