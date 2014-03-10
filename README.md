@@ -89,6 +89,26 @@ two library will conflict if they define the same varibles and the file include 
 
 As shown in `ex3_1namespace.cpp`
 
+string::size\_type
+------------------
+
+use `size_type` to avoid overflow which is not included in std namespace.
+
+vector
+---------
+
+Vector is a class template used to make class definition or function definition. When compiling the program, the program make some class definition.
+
+const\_iterator and const iterator
+----------------------------------
+
+const\_iterator: iterator to const data.
+const iterator: const iterator to data.
+
+**iter1 - iter2**: The "-" of iterator is operation override function.
+return difference\_type
+
+
 Chapter 12
 =========
 
