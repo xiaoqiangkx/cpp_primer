@@ -108,6 +108,12 @@ const iterator: const iterator to data.
 **iter1 - iter2**: The "-" of iterator is operation override function.
 return difference\_type
 
+**In General**:
+
+Use size\_t, difference\_size, string::size\_type and so on.
+Use container more.
+Use Iterator and typedef more.
+
 
 Chapter 12
 =========
