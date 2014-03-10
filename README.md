@@ -11,6 +11,7 @@ Contents
 ========
 
 * [Chapter 1 ](#chapter_1)
+* [Chapter 2 ](#chapter_2)
 * [Chapter 12](#chapter_12)
 * [Chapter 13](#chapter_13)
 * [Chapter 14](#chapter_14)
@@ -62,6 +63,7 @@ Const
 --------
 
 `const` and `static` are file local while `extern` are program local.
+header file: Never define `int a = 1;` which leads to define global variable twice. On the other hand, const variable is file local. As for function, inline and Macro will be substitute in compiling which will never conflict. 
 
 enum
 -------
@@ -74,6 +76,18 @@ struct and class
 
 The only difference between them is the default visit level.
 
+Header File
+----------------
+
+use `#ifdef #define #endif` to avoid load header file more than once.
+
+
+Chapter 2
+=========
+
+two library will conflict if they define the same varibles and the file include two namespaces.
+
+As shown in `ex3_1namespace.cpp`
 
 Chapter 12
 =========
