@@ -49,6 +49,32 @@ The 67 in `\67` is Oct. We can use `\000` and `\x000` but Dec.
 Variables
 ----------
 
+> Initialization is not Define plus Assign. direct-initialization(`int ival(1024);`) and copy-initialization(`int ival = 1024;`)
+
+> variables in stack and class are not initialized automatically.
+
+Definition and Declaration
+--------------------------
+
+Definition malloc memory and initialize variables while Declaration indicate type and name of variables.
+
+Const
+--------
+
+`const` and `static` are file local while `extern` are program local.
+
+enum
+-------
+
+1. enum should use constant expression to initialize.
+2. enum variable can only be assigned and defined by enum variable or enum selection.
+
+struct and class
+----------------
+
+The only difference between them is the default visit level.
+
+
 Chapter 12
 =========
 
