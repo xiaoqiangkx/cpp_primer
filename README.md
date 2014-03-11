@@ -238,6 +238,52 @@ ostream and istream is two base stream for reading and writing.
 
 stream can not be copied for some reason.
 
+IO state
+-----------
+
+```while (cin >> s)``` will just stop the reader if encounting bad, fail or eof situation.
+
+```cpp
+int ival;
+
+while (cin >> ival, !cin.eof()) {
+	if (cin.bad())
+		throw runtime_error("IO stream corrupted");
+
+	if (cin.fail()) {
+		cerr << "bad data, try again." << endl;
+		cin.clear(iostream::failbit);
+		continue;	
+	}
+
+	//ok to process ival
+}
+```
+
+Buffer
+----------
+
+**When to flush buffer**: 
+
+1. program finished.
+2. endl.
+3. invoke stream function flush. ```cout << "first" << flush << "second << flush;``` or ```cout << unitbuf << "first" << "second" << nounitbuf;```
+4. using read and write stream (cin and cout are tied together and share one buffer in order to ensure that any output is earlier than input)
+5. buffer is full.
+
+```cpp
+cout.tie(&cout);    //flush
+ostream& old_tie = cin.tie(&out);
+cin.tie(0);
+```
+
+**Pay Attention**: endl will flush but '\n' do not.
+
+fstream
+-----------
+
+The operation of fstream is similar with iostream which is its parent.
+
 Chapter 12
 ==========
 
