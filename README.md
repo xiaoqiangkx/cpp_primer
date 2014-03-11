@@ -20,6 +20,8 @@ Contents
 * [Chapter 7 ](#chapter_7)
 * [Chapter 8 ](#chapter_8)
 * [Chapter 9 ](#chapter_9)
+* [Chapter 10 ](#chapter_10)
+* [Chapter 11 ](#chapter_11)
 * [Chapter 12](#chapter_12)
 * [Chapter 13](#chapter_13)
 * [Chapter 14](#chapter_14)
@@ -321,11 +323,11 @@ Vector try its best to avoid resize too frequently.
 Container Adapter
 -----------------
 
-stack <= vector, list, deque
+stack ~= vector, list, deque
 
-queue <= list, deque (push_front)
+queue ~= list, deque (push\_front)
 
-priority_queue <= vector, deque (random-acess)
+priority\_queue ~= vector, deque (random-acess)
 
 
 Chapter 10
@@ -337,6 +339,10 @@ Add Element in Map
 -------------------
 
 ```map["hello"]++;``` is useful in counting words.
+
+Chapter 11
+==========
+
 
 
 Chapter 12
