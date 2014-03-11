@@ -7,6 +7,8 @@ Write down notes about C++ Primer book.
 
 > Use STL more but pointers in modern C++
 
+> C++ is compatible with C. He has many features that is not suitable but inheritanted from C.
+
 Contents
 ========
 
@@ -196,6 +198,33 @@ debug
 
 Chapter 7
 ==========
+
+const argument
+----------------
+
+Be able to store const and non-const variable.
+
+Function Overload
+------------------
+
+`void fun(int array[10])` and `void fun (int (&array)[10])` is different, the latter can only accept an array with length of 10.
+
+Take care of ambigous when using default argument.
+
+**Overload Resolution**: Do not convert type, Do not convert down type. `const` is not allowed to act as a differnet fuction variable. Do not use overload only if it is really more convenient.
+
+When It comes to reference and pointer, `const` can be used as different overload function.
+
+Lifetime and Scope
+------------------
+The initialization expression of static variable will be excuted once.
+
+`inline function` is static file scope.
+
+Default Constructor
+--------------------
+
+Only initialize class type variable.
 
 Chapter 8
 ==========
