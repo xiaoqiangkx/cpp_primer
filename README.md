@@ -19,6 +19,7 @@ Contents
 * [Chapter 6 ](#chapter_6)
 * [Chapter 7 ](#chapter_7)
 * [Chapter 8 ](#chapter_8)
+* [Chapter 9 ](#chapter_9)
 * [Chapter 12](#chapter_12)
 * [Chapter 13](#chapter_13)
 * [Chapter 14](#chapter_14)
@@ -289,6 +290,50 @@ reopen
 
 We should `close` and `clear` a stream before we reopen it.
 
+
+Chapter 9
+==========
+
+Elements in container must be able to copy and assign, therefore ostream and reference is not allowed.
+
+```vector<Foo> bad(10); vector<Foo> ok(10,1);``` will call the constructor. 
+
+Deque and Vector support Relation Operation other than `!=` and `==`.
+
+We should use `!=` to travesal container, because container other than deque and vector do not support ```>``` and so on.
+
+`eraze` and `push` will make iterator fail.
+
+use `value\_type`, `reference`, `const\_reference` to indicate type, then we need not know the type of container value.
+
+Front Back `[]` at()
+--------------------
+
+Return: All function return reference.
+
+front(), back(), `[]` will not throw error, but at() will throw out_of_range error.
+
+Vector Growth
+--------------
+
+Vector try its best to avoid resize too frequently.
+
+Container Adapter
+-----------------
+
+stack <= vector, list, deque
+
+queue <= list, deque (push_front)
+
+priority_queue <= vector, deque (random-acess)
+
+
+Add Element in Map
+-------------------
+
+```map["hello"]++;``` is useful in counting words.
+
+
 Chapter 12
 ==========
 
@@ -316,7 +361,7 @@ They use pointer __this__ to point data which is very similar with structure.
 **How did C++ protect data?**
 
 1. public\private\protected
-2. const function `double avg_price() const;`
+2. const function `double avg\_price() const;`
 
 
 Exercise Section 12-1
