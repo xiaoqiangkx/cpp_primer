@@ -18,6 +18,7 @@ Contents
 * [Chapter 5 ](#chapter_5)
 * [Chapter 6 ](#chapter_6)
 * [Chapter 7 ](#chapter_7)
+* [Chapter 8 ](#chapter_8)
 * [Chapter 12](#chapter_12)
 * [Chapter 13](#chapter_13)
 * [Chapter 14](#chapter_14)
@@ -228,6 +229,14 @@ Only initialize class type variable.
 
 Chapter 8
 ==========
+
+Header File
+-------------
+
+fstream and sstream is inheritanted form iostream.
+ostream and istream is two base stream for reading and writing.
+
+stream can not be copied for some reason.
 
 Chapter 12
 ==========
