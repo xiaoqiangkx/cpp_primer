@@ -284,6 +284,11 @@ fstream
 
 The operation of fstream is similar with iostream which is its parent.
 
+reopen
+-----------
+
+We should `close` and `clear` a stream before we reopen it.
+
 Chapter 12
 ==========
 
