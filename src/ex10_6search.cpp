@@ -16,7 +16,7 @@ class TextQuery {
     private:
         const string file;
         map<string, int> word_counts;
-        map<string, vector<int> > dict;
+        map<string, set<int> > dict;
 };
 
 void TextQuery::read_file() {
@@ -29,15 +29,8 @@ void TextQuery::read_file() {
         stringstream strm(line);
         while (strm >> word) {
             word_counts[word]++;
-            if (dict[word].size() == 0) {
-                dict[word].push_back(line_num);
-            } else {
-                size_t vec_size = dict[word].size();
-                if (dict[word][vec_size - 1] != line_num) {
-                    dict[word].push_back(line_num);
-                }
+            dict[word].insert(line_num);
             }
-        } 
     }
 
     ifile.close();
@@ -45,9 +38,10 @@ void TextQuery::read_file() {
 
 void TextQuery::search_word(const string &word) {
     cout << word_counts[word] << endl;
-    vector<int> &vec = dict[word];
-    for (int i=0; i < vec.size(); i++) {
-        cout << vec[i] << endl;
+    set<int>::iterator st = dict[word].begin(), ed = dict[word].end();
+    while (st != ed) {
+        cout << *st << endl;
+        st++;
     }
 }
 

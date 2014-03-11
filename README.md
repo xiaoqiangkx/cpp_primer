@@ -328,6 +328,11 @@ queue <= list, deque (push_front)
 priority_queue <= vector, deque (random-acess)
 
 
+Chapter 10
+============
+
+use set to record words.
+
 Add Element in Map
 -------------------
 
