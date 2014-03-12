@@ -345,6 +345,29 @@ Chapter 11
 
 The more STL you use, the more time you save.
 
+Back\_inserter
+--------------
+
+Avoid insert data outside of Container. 
+
+Container Conversion Automatically
+-----------------------------------
+
+double will be converted to int automatically.
+
+```cpp
+vector<double> vec(2, 2.2);
+double sum = accumulate(vec.begin(), vec.end(), 0);
+```
+
+Const Iterator
+--------------
+
+```const vector<int> vec;``` vec.begin() is a const iterator.
+
+Why the iterator of list is bi-direction.
+
+Use structure of algorithm to remember its function. (argument, name and iterator)
 
 Chapter 12
 ==========
