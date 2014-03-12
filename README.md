@@ -343,6 +343,7 @@ Add Element in Map
 Chapter 11
 ==========
 
+The more STL you use, the more time you save.
 
 
 Chapter 12
