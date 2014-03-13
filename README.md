@@ -380,6 +380,28 @@ Chapter 12
 Class
 -------
 
+Definition of Class
+-------------------
+
+> The definition of class and built-in type is defferent, which compiler do not malloc memory for it. (The definition of class and creation of object is equal to declaration and definition of built-in type)
+
+Class Definition is actually a declaring which do not malloc memory, so we should not give class member a definition in class.
+
+**Why is not allowed to define a class object in the same class?**
+
+```cpp
+class Link;
+class LinkScreen;
+class LinkScreen {
+   Link* linkScreen1;
+   LinkScreen linkScreen2; 
+};
+
+class Link {}; 
+```
+
+It leads to recursive forever. 
+
 **Why shouldn't we implentation every function in definition?**
 
 1. Function implemented in definition of Class is inline. Class definition is just like the definition of Struction. Function implemention in Class definition is inline function like Macro.

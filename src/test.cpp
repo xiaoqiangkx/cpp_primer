@@ -1,22 +1,13 @@
 #include <iostream>
-#include <stdexcept>
-#include <vector>
-using namespace std;
+class Link;
+class LinkScreen;
+class LinkScreen {
+    Link* linkScreen1;
+    LinkScreen linkScreen2; 
+};
 
-void fun2() {
-    throw runtime_error("error");
-}
-
-void fun1() {
-    try {
-        fun2();
-    } catch(runtime_error err) {
-        cout << err.what() << endl;
-    }
-}
+class Link {};
 
 int main() {
-    fun1();
-    cout << "end" << endl;
     return 0;
 }
