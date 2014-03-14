@@ -400,12 +400,18 @@ class LinkScreen {
 class Link {}; 
 ```
 
-It leads to recursive forever. 
+It leads to recursive forever. [reference](http://stackoverflow.com/questions/22368353/why-is-it-not-allowed-to-define-a-class-object-in-the-same-class)
 
 **Why shouldn't we implentation every function in definition?**
 
 1. Function implemented in definition of Class is inline. Class definition is just like the definition of Struction. Function implemention in Class definition is inline function like Macro.
 2. Definition and Implementation should better be departed which is useful for uplevel.
+
+this
+----------
+
+It is useful when we want reference the object but its members. (return itself)
+
 
 **Why should we add Class::?**
 
