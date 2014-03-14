@@ -499,6 +499,8 @@ Chapter 13
 Copy Constructor
 ----------------
 
+> Copy Initialization build a temp object, then call direct-initialization.
+
 > copy initialization(=) always create a temp object, then use copy constructor to copy. It's used for being compatiable with C syntax which use `=` to initial data.
 
 ```cpp
@@ -512,6 +514,22 @@ vector<string> svec(5); // copy-initialization
 **When should we make our copy-initialization?**
 There are pointer members which need to copy data, or we want to do some extra job besides copy members one by one. 
 
+
+Scope
+------------
+
+`const Object&` can not protect the pointer value of object.
+
+We can change the value of object in the same kind of class object.
+
+```cpp
+class test {
+    public:
+        void change(test t) { t.a = 3;}
+    private:
+        int a = 3;
+}
+```
 
 Assigning Function
 -----------------
