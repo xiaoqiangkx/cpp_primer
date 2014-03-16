@@ -512,7 +512,14 @@ vector<string> svec(5); // copy-initialization
 ```
 
 **When should we make our copy-initialization?**
+
 There are pointer members which need to copy data, or we want to do some extra job besides copy members one by one. 
+
+When Do we need override direct-initialization. When We need to allocate data, make a unique id and so on.
+
+**How to avoid direct-initialization?**
+
+Make a private dirrect initialization function declaration, then friend class\function and object can not use it.
 
 
 Scope
@@ -535,8 +542,12 @@ Assigning Function
 -----------------
 
 
-Deconstructor
+Destructor
 ------------------
+
+while local scope finished(encounter '}'), destructor is invoked.
+
+User-defined destructor is used to free memory in constructor or run-time of object. If we need user-defined destructor, we also need copy initialization and direct initialization.
 
 Dangling Pointers
 ------------------
