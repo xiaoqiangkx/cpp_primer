@@ -552,9 +552,12 @@ User-defined destructor is used to free memory in constructor or run-time of obj
 Dangling Pointers
 ------------------
 
+Data a pointer points to is deleted. The pointer is now dangling.
+
 Smart Pointers
 --------------------
 
+use counter with pointer class member.
 
 Chapter 14
 ============
