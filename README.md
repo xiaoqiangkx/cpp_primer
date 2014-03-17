@@ -581,7 +581,7 @@ In functional header, there are some Function object. object() is euqal to funct
 Chapter 15
 ============
 
-> Inheriance make us define similar classes, while Dynamic Bind let us ignore differences between similar classed.
+> Inheriance make us define similar classes, while Dynamic Bind let us ignore differences between similar classes.
 
 > There are static type and dynamic type about Reference and Pointer. They may be different.
 
