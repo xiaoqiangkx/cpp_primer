@@ -575,7 +575,8 @@ It's not allowed to override operator on two built-in type.
 Function object
 ----------------
 
-
+**Logical-Math-Relational**
+In functional header, there are some Function object. object() is euqal to function. 
 
 Chapter 15
 ============
