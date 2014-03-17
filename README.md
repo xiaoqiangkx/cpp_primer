@@ -566,6 +566,8 @@ It's not allowed to override operator on two built-in type.
 
 > Common override operator: ==, <<, >>, !.
 
+> No `short-cut` on `||` and `&&`
+
 
 Chapter 15
 ============
