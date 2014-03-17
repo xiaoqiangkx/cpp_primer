@@ -568,6 +568,14 @@ It's not allowed to override operator on two built-in type.
 
 > No `short-cut` on `||` and `&&`
 
+> sort use `<` and find use `==`
+
+`++` and `--` with prefix and postfix which need to save the state before.
+
+Function object
+----------------
+
+
 
 Chapter 15
 ============

@@ -15,8 +15,8 @@ class Sale_item {
             return in;
         }
 
-        Sale_item& operator+(const Sale_item& item) {
-            int sum = i + item.i; 
+        friend Sale_item& operator+(const Sale_item& item1, const Sale_item& item2) {
+            int sum = item1.i + item2.i; 
             Sale_item *new_item = new Sale_item(sum);
             return *new_item;
         }
