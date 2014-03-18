@@ -589,3 +589,13 @@ Chapter 15
 
 Chapter 16
 ============
+
+> Template is a blueprint but function or class.
+
+> compiler infers what template argument(s) to bind to template function. The compiler initialize a function template. binding for class argument is mandatory.
+
+> why should not template class add ```<>```
+
+Non-type template argument can get the length of array automatically.
+
+**Type Conversion**: The arguments should all be converted or not.
