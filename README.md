@@ -27,6 +27,7 @@ Contents
 * [Chapter 14](#chapter_14)
 * [Chapter 15](#chapter_15)
 * [Chapter 16](#chapter_16)
+* [Chapter 17](#chapter_17)
 
 
 Chapter 2
@@ -599,3 +600,22 @@ Chapter 16
 Non-type template argument can get the length of array automatically.
 
 **Type Conversion**: The arguments should all be converted or not.
+
+
+Chapter 17
+============
+
+Exception
+----------
+
+The variable in local scope will be cleared when exception is threw. Therefore, the data in exception should be in global scope.
+
+Namespace
+-----------
+
+`::` is global namespace.
+
+MutiInheriance
+--------------
+
+virtual base class: avoid to get two base object.
