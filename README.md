@@ -28,6 +28,7 @@ Contents
 * [Chapter 15](#chapter_15)
 * [Chapter 16](#chapter_16)
 * [Chapter 17](#chapter_17)
+* [C++ 11](#c++_11)
 
 
 Chapter 2
@@ -619,3 +620,9 @@ MutiInheriance
 --------------
 
 virtual base class: avoid to get two base object.
+
+
+C++ 11
+===========
+
+
