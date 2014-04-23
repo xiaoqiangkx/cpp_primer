@@ -592,6 +592,8 @@ Chapter 15
 Chapter 16
 ============
 
+模板: 算法和容器支持不同的类型. 同一个sort,vector支持不同的类型. 当然类型必须满足这些算法和容器的一些要求. 如果你不满足这些要求, 效率低, 报错或者结果错误(参考effective STL).
+
 > Template is a blueprint but function or class.
 
 > compiler infers what template argument(s) to bind to template function. The compiler initialize a function template. binding for class argument is mandatory.
