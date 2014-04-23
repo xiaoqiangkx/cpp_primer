@@ -596,6 +596,11 @@ Chapter 16
 
 使用类模板template来重写List, Queue.
 
+**问:为什么模板函数或者类中不允许出现typedef重定义**     
+答: 静态编译时等价于写了`typedef xx T`的形式    
+
+
+
 > Template is a blueprint but function or class.
 
 > compiler infers what template argument(s) to bind to template function. The compiler initialize a function template. binding for class argument is mandatory.

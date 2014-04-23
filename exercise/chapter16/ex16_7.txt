@@ -1,0 +1,5 @@
+(a) template <class T, class U, typename V> void f1(T, U, V);
+(b) template <class T> T f2(T&);   定义(int &T)没错, 但是无法类型推断, 见ex16_7.cpp
+(c) template <class T> inline T foo(T, unsigned int*);
+(d) template <class T> T f4(T, T);
+(e) 正常覆盖, 模板函数影响.
