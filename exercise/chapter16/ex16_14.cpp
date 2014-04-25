@@ -5,11 +5,10 @@ using namespace std;
 template <typename T>
 void printElem(const T &container) {
     
-    typename T::const_iterator st = container.begin(), ed = container.end();
+    typename T::const_iterator st;
 
-    while (st != ed) {
+    for (st = container.begin(); st != container.end(); st++) {
         cout << *st << endl;
-        st++;
     }
 
 }

@@ -599,7 +599,11 @@ Chapter 16
 **问:为什么模板函数或者类中不允许出现typedef重定义**     
 答: 静态编译时等价于写了`typedef xx T`的形式    
 
+模板作用域: 模板之后的函数, 语句段或者语句.
 
+模板类型形参可以作为返回类型或函数形参类型, 函数体内变量声明以及强制类型转换.
+
+引用模板形参类的类型成员时, 必须使用typename, 默认是数据成员.
 
 > Template is a blueprint but function or class.
 
