@@ -605,6 +605,8 @@ Chapter 16
 
 引用模板形参类的类型成员时, 必须使用typename, 默认是数据成员.
 
+C++引入数组的引用传递, 必须输入大小N, 无需传递长度.
+
 > Template is a blueprint but function or class.
 
 > compiler infers what template argument(s) to bind to template function. The compiler initialize a function template. binding for class argument is mandatory.
