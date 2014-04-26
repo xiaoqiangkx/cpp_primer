@@ -7,6 +7,7 @@ template <typename T> class List;
 
 template <typename T>
 class ListNode {
+    // template <typename Type> friend class List;
     friend class List<T>;
     T val;
     ListNode *prev;
