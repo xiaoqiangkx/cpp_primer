@@ -1,0 +1,1 @@
+push中调用QueueItem的构造函数, next初始化为0, push之后在尾部加上这个元素.
