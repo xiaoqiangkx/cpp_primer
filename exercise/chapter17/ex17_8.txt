@@ -1,0 +1,6 @@
+(a) 错误, ix为整数类型, 不是指针
+(b) 错误, pi指向不是动态分配资源, 析构时runtime_error
+(c) 正确, pi2是动态资源
+(d) 错误, 同b
+(e) 正确
+(f) 错误, 同一份资源赋值两次后, 会导致两次delete, runtime_error
