@@ -1,0 +1,4 @@
+(a) throw new exceptionType();
+(b) throw 1;
+(c) throw overflow;
+(d) throw 8;
