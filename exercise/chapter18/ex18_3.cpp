@@ -10,6 +10,7 @@ using namespace std;
 template <typename T> 
 class Vector {
     public:
+        typedef T* iterator;
         Vector(): elements(NULL), first_free(NULL), end(NULL) {}
 
         bool empty() const {
@@ -30,7 +31,15 @@ class Vector {
         void push_back(const T& t);
         void pop_back();
         void reserve(size_t n);
-        void resize(size_t n, const T& t);
+        void resize(size_t n, const T& t = T());
+
+        iterator begin() const {
+            return elements;
+        }
+
+        iterator last() const {
+            return first_free;
+        }
 
         T& operator[](const size_t index) {
             if (elements + index >= first_free) {
@@ -166,29 +175,13 @@ void Vector<T>::reallocate() {
 int main() {
     Vector<int> vec;
     vec.push_back(1);
-    cout << "size= " << vec.size() << ", capacity= " << vec.capacity() << endl;
     vec.push_back(2);
-    cout << "size= " << vec.size() << ", capacity= " << vec.capacity() << endl;
-    vec.push_back(2);
-    cout << "size= " << vec.size() << ", capacity= " << vec.capacity() << endl;
-    vec.push_back(2);
-    cout << "size= " << vec.size() << ", capacity= " << vec.capacity() << endl;
-    vec.push_back(2);
-    cout << "size= " << vec.size() << ", capacity= " << vec.capacity() << endl;
-    vec.push_back(2);
-    cout << "size= " << vec.size() << ", capacity= " << vec.capacity() << endl;
-    vec.push_back(2);
-    cout << "size= " << vec.size() << ", capacity= " << vec.capacity() << endl;
-    vec.pop_back();
+    cout << "1=" << vec[0] << ", 2=" << vec[1] << endl;
 
-    vec.reserve(8);
-    cout << "size= " << vec.size() << ", capacity= " << vec.capacity() << endl;
-    vec.reserve(10);
-    cout << "size= " << vec.size() << ", capacity= " << vec.capacity() << endl;
-
-    vec.resize(20, 1);
-    cout << "size= " << vec.size() << ", capacity= " << vec.capacity() << endl;
-    vec.resize(4, 1);
-    cout << "size= " << vec.size() << ", capacity= " << vec.capacity() << endl;
+    Vector<int>::iterator st = vec.begin();
+    while (st != vec.last()) {
+        cout << *st << endl;
+        st++;
+    }
     return 0;
 }

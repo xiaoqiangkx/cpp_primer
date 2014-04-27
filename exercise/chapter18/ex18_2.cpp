@@ -10,6 +10,7 @@ using namespace std;
 template <typename T> 
 class Vector {
     public:
+        typedef T* iterator;
         Vector(): elements(NULL), first_free(NULL), end(NULL) {}
 
         bool empty() const {
@@ -30,7 +31,15 @@ class Vector {
         void push_back(const T& t);
         void pop_back();
         void reserve(size_t n);
-        void resize(size_t n, const T& t);
+        void resize(size_t n, const T& t = T());
+
+        iterator begin() const {
+            return elements;
+        }
+
+        iterator last() const {
+            return first_free;
+        }
 
         T& operator[](const size_t index) {
             if (elements + index >= first_free) {
