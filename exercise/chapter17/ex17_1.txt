@@ -1,0 +1,2 @@
+(a) 拷贝栈上的局部变量range_error
+(b) range_error异常, 拷贝栈上的局部变量
