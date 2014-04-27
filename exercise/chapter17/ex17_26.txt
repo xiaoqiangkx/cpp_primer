@@ -1,0 +1,2 @@
+只能调用print和~zooAnimal方法
+调用析构函数时,顺序时, Panda, Endangered, Bear, ZooAnimal

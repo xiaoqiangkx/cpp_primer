@@ -1,0 +1,9 @@
+(a) 构造函数: Class, Base, D1, D2, MI, CLASS FIANL
+    析构函数: FINAL, CLASS, MI, D2, D2, BASE, CLASS
+
+(b) 1个Base子对象, 2个class子对象
+
+(c) a错误, 派生类不能指向基类.
+    b正确
+    c错误, 同上
+    d正确

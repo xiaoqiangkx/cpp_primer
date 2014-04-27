@@ -1,0 +1,2 @@
+(a) 只有print, dval方法均可见
+(b) ival, dval, cval, fval,sval, print
