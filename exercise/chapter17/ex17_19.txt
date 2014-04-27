@@ -1,0 +1,3 @@
+cplusplus_primer::MatrixLib::matrix cplusplus_primer::MatrixLib::operator* (
+    const cplusplus_primer::MatrixLib::matrix &, const cplusplus_primer::MatrixLib::matrix &) {}
+
