@@ -1,0 +1,1 @@
+typedef double (Sale_item::*Pt)() const;

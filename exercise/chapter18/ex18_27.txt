@@ -1,0 +1,2 @@
+typedef char (Screen::*p)() const;
+typedef char (Screen::*p)(Screen::index ht, Screen::index wd) const;

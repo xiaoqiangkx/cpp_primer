@@ -1,0 +1,7 @@
+Screen::index Screen::*p = &Screen::width;
+Screen screen;
+Screen *screen;
+
+screen.*p;
+screen->*p;
+

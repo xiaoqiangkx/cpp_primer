@@ -1,0 +1,1 @@
+string Sales_item:: *isbn;
