@@ -1,0 +1,5 @@
+(1)
+候选函数: 5个compute方法. 可行函数4个compute方法. 最终调用compute(int)
+
+(2)
+直接调用compute(const void *)
