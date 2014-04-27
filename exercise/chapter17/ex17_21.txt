@@ -1,0 +1,5 @@
+using声明: 放在position1时, ival重定义, 放在position2 时dval重定义. 两者都引起ival的二义性错误.
+using指示: 放在position1时, ival直接屏蔽掉ival, ::ival不存在, 同时using指示作用域不影响到函数类作用域
+
+
+编译器不同,结果有差异. 本人在gcc进行了测试
