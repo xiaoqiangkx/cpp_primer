@@ -1,0 +1,2 @@
+allocator类型更加安全, 由于construct等类型可感知.
+当然定位new比construct更加灵活.
