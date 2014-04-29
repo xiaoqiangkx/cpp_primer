@@ -1,0 +1,8 @@
+虚函数:
+check_out
+check_in
+is_late
+print
+due_data
+
+是不是虚函数还是得看应用场景.
