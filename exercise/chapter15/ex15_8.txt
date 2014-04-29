@@ -1,0 +1,6 @@
+derived的print方法改成
+
+virtual void print(ostream &os) {
+    base::print(os);
+    os << " " << mem;
+}
