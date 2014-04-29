@@ -1,0 +1,84 @@
+digraph G {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+
+    node [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        shape = "record"
+    ]
+
+    edge [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        arrowhead = "empty"
+    ]
+
+    Library [
+        label = "{Library}"
+    ]
+
+    book [
+        label = "{book}"
+    ]
+    
+    video [
+        label = "{video}"
+    ]
+
+    game [
+        label = "{game}"
+    ]
+
+    childrens_puppet [
+        label = "{childrens_puppet}" 
+    ]
+
+    record [
+        label = "{record}"
+    ]
+    
+    book -> Library
+    video -> Library
+    game -> Library
+    record -> Library
+    childrens_puppet -> Library
+
+    cdrom_book [
+        lable = "{cdrom_book}"
+    ]
+
+    cdrom_book -> book
+
+    audio_book [
+        lable = "{audio_book}"
+    ]
+
+    audio_book -> book
+
+    rental_book [
+        lable = "{rental_book}"
+    ]
+
+    rental_book -> book
+
+    sony_playstation_video [
+        lable = "{sony rental vedio}"
+    ]
+
+    sony_playstation_video -> video
+
+    sega_video_game [
+        label = "{sega_video_game}"
+    ]
+
+    sega_video_game -> game
+    sega_video_game -> video
+
+    nintendo_video_game [
+        label = "{nintendo_video_game}"
+    ]
+    
+    nintendo_video_game -> game
+    nintendo_video_game -> video
+}

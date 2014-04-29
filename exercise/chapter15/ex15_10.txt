@@ -1,0 +1,2 @@
+dot -T png -o ex15_10.png ex15_10.dot
+display ex15_10.png
