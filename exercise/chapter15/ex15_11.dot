@@ -1,0 +1,53 @@
+digraph G {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+
+    node [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        shape = "record"
+    ]
+
+    edge [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        arrowhead = "empty"
+    ]
+
+    Figure [
+        label = "{Figure}"
+    ]
+
+    Figure1 [
+        label = "{Figure1}"
+    ]
+    
+    Figure2 [
+        label = "{Figure2}"
+    ]
+
+    Rectangle [
+        label = "{Rectangle}"
+    ]
+
+    Circle [
+        label = "{Circle}" 
+    ]
+
+    Sphere [
+        label = "{Sphere}"
+    ]
+    
+    Cone [
+        label = "{Cone}"
+    ]
+    
+    Figure1 -> Figure
+    Figure2 -> Figure
+    Circle -> Figure1
+    Rectangle -> Figure1
+    
+    Sphere -> Figure2
+    Cone -> Figure2
+
+}
