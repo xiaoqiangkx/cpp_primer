@@ -1,0 +1,7 @@
+(a): Derived中的foo(string)屏蔽了Base中的foo(int)
+
+应该使用d.Base::foo(1024); 或者在Derived中添加using Base::foo;
+
+(b): 使用Base::bar = 1024; 或者Derived中添加using Base::bar;
+
+(c): 只能通过派生类对象访问protected成员, 不能通过基类直接访问protected成员.
