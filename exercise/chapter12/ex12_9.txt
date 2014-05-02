@@ -1,0 +1,2 @@
+Screen(index h, index w, const string& contents_)
+    : height(h), width(w), contents(contents_) {}

@@ -1,0 +1,2 @@
+struct默认的访问标号为public, 默认继承形式为public. 而
+class均为private.
