@@ -1,1 +1,2 @@
-C1, C2通过类名::函数名, 或者基类object和派生类object来访问
+public变量或者函数通过类名::函数名, 或者基类object和派生类object来访问
+protected变量或者函数只能在派生类内部访问,不能使用基类或者派生类object来访问
