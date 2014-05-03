@@ -1,0 +1,3 @@
+(line 1) C风格字符串转换为临时string, 再调用null_isbn的复制构造函数.
+(line 2) 使用string直接作为实参调用Sales_item的构造函数
+(line 3) 将C风格字符串转换为临时string, 其它同line 2

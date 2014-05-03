@@ -1,0 +1,2 @@
+(a) 类定义体使用的Type均为double, 类外定义返回值使用string, 形参使用double. initVal()也使用类成员函数.
+错误: setVal返回值为Exercise::Type, 使用::initVal()
