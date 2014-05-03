@@ -1,0 +1,1 @@
+找不到operator+=(const Sales_item* this, string)这个运算符重载函数, 编译错误

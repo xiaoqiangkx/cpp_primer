@@ -1,0 +1,4 @@
+1.2. bool operator==(const string&, const string&);
+3. bool operator==(const vector<string> &, const vector<string> &);
+
+和答案不一致: 不是说关系运算符重载一般是非成员函数吗
