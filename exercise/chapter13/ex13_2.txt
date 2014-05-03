@@ -1,0 +1,2 @@
+单int参数构造函数为explicit
+或者复制构造函数为private
