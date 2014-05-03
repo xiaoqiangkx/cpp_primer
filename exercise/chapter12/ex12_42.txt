@@ -1,0 +1,5 @@
+rate不能在类内初始化
+vecSize需要在类外部声明
+vec不能在类内初始化
+
+注:gcc下const static可以不再类外声明
