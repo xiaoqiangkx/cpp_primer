@@ -6,7 +6,7 @@ class X {
     const static int a = 1;
 };
 
-const int X::a;
+// const int X::a;
 
 int main() {
     X x;
