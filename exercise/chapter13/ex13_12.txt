@@ -1,0 +1,1 @@
+NoName需要自定义析构函数来释放string*
