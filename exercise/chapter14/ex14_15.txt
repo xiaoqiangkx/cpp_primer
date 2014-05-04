@@ -1,0 +1,3 @@
+重点指针使用深度赋值.
+pair<string, string> *ppa = new pair<string, string>;
+*ppa = **iterator;

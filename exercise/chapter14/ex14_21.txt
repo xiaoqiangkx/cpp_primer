@@ -1,0 +1,7 @@
+class X {
+        X* operator->() { return *ptr; }    // 没有默认构造函数,ptr!= NULL
+    private:
+        ScreenPtr *ptr;
+};
+
+//ScreenPtr->返回Screen对象指针, 真实保存的数据. X->返回ScreenPtr指针而已
