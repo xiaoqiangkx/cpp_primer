@@ -1,0 +1,4 @@
+1. bind2nd(greater<int>(), 1024)
+2. bind2nd(not_equal_to<string>(), "pooh")
+或者not(bind2nd(not2nd(equal_to<string>(), "pooh")
+3. bin2nd(multiplies<int>(), 2)

@@ -1,0 +1,2 @@
+(a) 存在double, float转换的二义性
+(b) 调用operator float() 正确

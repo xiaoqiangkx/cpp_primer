@@ -1,0 +1,3 @@
+operator const int() const;
+operator int();
+分别适用于const Integral和Integral的转换
