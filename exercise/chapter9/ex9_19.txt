@@ -1,0 +1,13 @@
+// 题目本意是将vector前半部分中的元素中值为some_val的元素前插入值为some_val*2的元素
+
+int cnt = iv.size() / 2;
+int num = 0;
+vector<int>::iterator iter = iv.begin();
+while (num++ < cnt) {   // mid指针可能会失效
+    if (*iter == some_val) {
+        iter = iv.insert(iter, 2*some_val);
+        iter += 2;
+    } else {
+        iter++;
+    }
+}
