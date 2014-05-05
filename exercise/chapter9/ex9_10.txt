@@ -1,0 +1,4 @@
+(a) 使用const_iterator
+(b) list迭代器不支持算法运算
+(c) vector为了和数组兼容, 支持这个操作. vector是array和其它容器的桥梁
+(d) 边界条件是it != svec.end()

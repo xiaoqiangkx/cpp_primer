@@ -1,0 +1,1 @@
+判断vec_iter指向的string是否为空.

@@ -1,0 +1,11 @@
+template <typename T>
+bool find(T beg, T end, int val) {
+    T t = beg;
+    while (t != end) {
+        if (val == *t)
+            return true;
+        t++;
+    }
+
+    return false;
+}
