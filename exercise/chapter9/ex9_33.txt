@@ -1,0 +1,4 @@
+(a) vector
+(b) list
+(c) deque
+(d) 边输入边排序list, 输入后排序vector
