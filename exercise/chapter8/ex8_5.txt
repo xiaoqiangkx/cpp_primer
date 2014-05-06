@@ -1,0 +1,1 @@
+cin独到不合法的格式个, 条件状态置位. operator bool() 值为false

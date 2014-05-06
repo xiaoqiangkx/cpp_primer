@@ -1,0 +1,4 @@
+ofstream : 输出到文件中
+ostringstream: 输出到字符串s中
+ifstream: 编译错误.
+
