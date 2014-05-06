@@ -1,0 +1,5 @@
+1. pair<T1, T2> p; p.first/second
+2. make_pair<T1, T2>(v1, v2)
+3. pair<T1, T2> p(v1, v2)
+
+第2者适合创建临时变量; 第一者适合创建first/second未知的变量, 第3者适合一次性创建pair

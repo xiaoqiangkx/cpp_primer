@@ -1,0 +1,2 @@
+map<K,V>::iterator it;
+it->second = "";

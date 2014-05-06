@@ -1,0 +1,3 @@
+首先三者都支持复制和赋值.
+由于vector<int>::iterator支持关系运算, 所以可以作为map元素.
+list<int>::iterator不可以. pair<int, string>保证严格弱排序.
