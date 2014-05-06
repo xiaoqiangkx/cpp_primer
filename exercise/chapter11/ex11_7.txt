@@ -1,0 +1,4 @@
+(a) back_inserter(vec) 返回一个迭代器, 但是通过push_back而不是*,++添加元素.
+或者使用resize也可以.
+
+(b) 使用resize即可.
