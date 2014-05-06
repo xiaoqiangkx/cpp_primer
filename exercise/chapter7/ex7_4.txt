@@ -1,0 +1,3 @@
+double my_abs(duoble val) {
+    return val > 0 ? val : -val;
+}
