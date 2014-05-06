@@ -1,0 +1,5 @@
+输入迭代器: 支持读, 不能写, 只能自增. istream_iterator. find算法
+输出迭代器: 支持写, 不能读, 只能自增, ostream_iterator
+前向迭代器: 读写, 只能自增. replace算法.
+双向迭代器: 读写, 双向. reverse算法(两个指针). list, set, map
+随机迭代器, 随机读写, 双向. deque, vector, string 

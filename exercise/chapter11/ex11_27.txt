@@ -1,0 +1,4 @@
+replace: 将输入区间中元素替换
+replace_if: 将输入区间满足pred条件的元素替换
+replace_copy: 将输入区间的元素替换并输出到dest中, 其它元素正常拷贝.
+replace_copy_if: 将输入区间满足条件的元素替换并输出到dest中, 其它元素正常拷贝.

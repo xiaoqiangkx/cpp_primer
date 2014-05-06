@@ -1,0 +1,4 @@
+(a) const迭代器必须赋值给const迭代器.
+(b) 空容器无法fill, runtime_error
+(c) 两个参数必须类型一致, complier error
+(d) 两个iterator不属于一个容器, runtime error
