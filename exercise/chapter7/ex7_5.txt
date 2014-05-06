@@ -1,0 +1,4 @@
+int larger(int v1, const int* v2) {
+    return v1 > *v2 ? v1 : *v2;
+}
+因为无需改变元素, 使用const int*可以接收const int*和int*的指针
