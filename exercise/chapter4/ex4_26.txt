@@ -1,0 +1,4 @@
+char str[80];
+cin >> str;
+即可
+

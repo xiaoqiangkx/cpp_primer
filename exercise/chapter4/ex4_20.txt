@@ -1,0 +1,1 @@
+(d)错误, const int指针不能赋给非const的int类型指针

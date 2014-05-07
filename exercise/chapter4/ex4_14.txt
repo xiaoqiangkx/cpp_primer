@@ -1,0 +1,3 @@
+int *p = &val;
+p = xx;
+*p = xx;
