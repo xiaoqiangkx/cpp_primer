@@ -1,0 +1,5 @@
+(c) 错误, 使用*prev2即可, 由于申请的元素为vector<string>而不是vector<string>*
+
+(f) 错误, svec不是指针.
+(i) 编译不错误, 运行时错误, 由于delete无法析构栈上对象.
+

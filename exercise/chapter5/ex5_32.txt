@@ -1,0 +1,4 @@
+(a) 'a' 转化为int, 相加后转换为char
+(b) ival*1.0的结果转换为double, 相减结果转换为float
+(c) unsigned转化为float, 后结果转换为double
+(d) int转换为float, float转换为double, double截断为char类型.

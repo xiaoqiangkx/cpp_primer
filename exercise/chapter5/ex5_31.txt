@@ -1,0 +1,3 @@
+(a) fval到bool类型转换
+(b) ival转化为float, 相加后转化为double类型
+(c) ival转换为double类型后, cval提升为int类型后转换为double类型, 最后相加.

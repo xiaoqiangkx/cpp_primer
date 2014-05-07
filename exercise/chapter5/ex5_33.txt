@@ -1,0 +1,4 @@
+(a) pv = static_cast<void*>(ps)
+(b) ival = static_cast<int>(*pc)
+(c) pv = static_cast<void*>(&dval)
+(d) pc = static_cast<char*>(pv)
