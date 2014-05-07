@@ -1,0 +1,1 @@
+使用char **parr = new char*[svec.size()];
