@@ -1,0 +1,4 @@
+(a) 正确
+(b) iter没有初始化
+(c) while不执行, 应该是ptr == 0吧
+(d) status作用域在while中, if无法访问到status
