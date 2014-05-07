@@ -1,0 +1,4 @@
+(a) bool compare(matrix &, matrix &);
+(b) vector<int>::iterator change_val(int, vector<int>::iterator);
+
+注意:函数名是动词还是名词.

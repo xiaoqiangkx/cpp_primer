@@ -1,0 +1,1 @@
+error(const string& s, int a = 0, int b = 0);
