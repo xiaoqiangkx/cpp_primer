@@ -1,19 +1,16 @@
-C++ Primer Notes
+C++ Primer 学习札记
 ============================
 
-Write down notes about C++ Primer book.
 
-> Consider yourseflf as a compiler for static language and find what C++ is used for, you will know what happen to C++.
+> C++和操作系统是密不可分的。
 
-> Use STL more but pointers in modern C++
+> 尽量使用STL和智能指针，回避数组和普通指针。
 
-> C++ is compatible with C. He has many features that is not suitable but inheritanted from C.
-
-Contents
+目录
 ========
 
-* [Chapter 2 ](#chapter_2)
-* [Chapter 3 ](#chapter_3)
+* [变量和基本类型](#变量和基本类型)
+* [标准库类型](#标准库类型)
 * [Chapter 4 ](#chapter_4)
 * [Chapter 5 ](#chapter_5)
 * [Chapter 6 ](#chapter_6)
@@ -31,101 +28,81 @@ Contents
 * [C++ 11](#c++_11)
 
 
-Chapter 2
-==========
+变量和基本类型
+===============
 
-Basic Type
+整数类型
 -----------------------
 
-> C++ Standard guarantee minimum sizes. Compiler can use larger size as needed.
+- 有符号数和无符号数
+	- 在机器存储角度看，有符号和无符号数都是补码bits表示，没有区别。所谓的有符号数和无符号数只是C++程序解析时产生区分而已，例如cout输出时根据类型来确定不同输出代码。[钱智慧的博客](http://www.cnblogs.com/qzhforthelife/archive/2012/10/30/2746918.html)。
+	- 数组以及vector等的索引需要使用无符号数。
+	- char类型unsigned还是signed是未定义的。
+- 表示范围和溢出问题
+	- 由于整数表示范围有限，一旦运算出错，那么将会丢失高位，出现精度丢失的情况。
+	- 两个正数相加溢出时出现**负数**，两个负数相加结果可能为**正数或者负数**。可以使用`limits.h`来验证.
+- 类型转换
 
-**Integral type**: char\short\int\long\long long\ __bool__
+**注意：**   
+1. **跨平台**: linux开发下使用[`stdint.h`](http://www.nongnu.org/avr-libc/user-manual/stdint_8h_source.html)中封装各类整型。`unitN_t`、`intN_t`、`intptr_t`和`unitptr_t`是较常用的几个类型。
 
-It depends on compiler whether `char` is `unsigned char` or `signed char`.
+浮点类型
+-----------------------
+- 精度
+	- float类型保证6位有效数字，double类型保证10位有效数字。double相对于float计算代价区别不大。
 
-> C++ Standard do not define how to represent `signed` data.
+变量
+-----------------------
+- 初始化与赋值
+	- 初始化在编译时就分配了空间并保存了初始值。而赋值是在程序运行过程中的一个步骤。
+	- 全局变量和局部变量由于存在bbs段，所以编译器初始化为0，栈和堆中变量都没有初始化。[程序员的自我修养](http://book.douban.com/subject/3652388/)
+- 变量和声明
+	- `extern`可以用于声明变量。不分配空间。
+- const变量作用域
+	- 普通全局变量默认添加`extern`，而const变量正好相反。
+- typedef
+	- 用于隐藏类型的实现，而突出类型的目的。如`typedef unsigned index`。
+	- 用于简化复杂类型， 如`typedef int fun(int, int)`。
+	- 允许一种类型用于多个目的。
 
-**How to get the value of unsigned?**: module (-1 % 256 = 255)
+枚举
+-----------------------
+- 定义
+	- 可以定义初值。默认从0开始，可以自定义。如`enum Form { kShape = 1, kSphere };`
+	- 只能通过shape等枚举成员赋值，不同通过数字赋值。
+	- 本质上枚举类型即一系列*常量*，但是语法上允许枚举成员转换为整型，反之不允许。
 
-It is much faster to use `int` than `long`.
-
-**When to use unsigned and signed**: unsigned is more situable to be used as index.
-
-**How to judge a string to be a valid float?**
-
-use `\` to split long cout expression.
-
-The type of `6.` is double.
-
-The 67 in `\67` is Oct. We can use `\000` and `\x000` but Dec.
-
-Variables
-----------
-
-> Initialization is not Define plus Assign. direct-initialization(`int ival(1024);`) and copy-initialization(`int ival = 1024;`)
-
-> variables in stack and class are not initialized automatically.
-
-Definition and Declaration
---------------------------
-
-Definition malloc memory and initialize variables while Declaration indicate type and name of variables.
-
-Const
---------
-
-`const` and `static` are file local while `extern` are program local.
-header file: Never define `int a = 1;` which leads to define global variable twice. On the other hand, const variable is file local. As for function, inline and Macro will be substitute in compiling which will never conflict. 
-
-enum
--------
-
-1. enum should use constant expression to initialize.
-2. enum variable can only be assigned and defined by enum variable or enum selection.
-
-struct and class
-----------------
-
-The only difference between them is the default visit level.
-
-Header File
-----------------
-
-use `#ifdef #define #endif` to avoid load header file more than once.
+类类型
+-----------------------
+- struct和class：唯一的区别就是默认访问级别。
 
 
-Chapter 3
-=========
+标准库类型
+=============
+> 尝试去实现这些标准库类型。
 
-two library will conflict if they define the same varibles and the file include two namespaces.
-
-As shown in `ex3_1namespace.cpp`
-
-string::size\_type
-------------------
-
-use `size_type` to avoid overflow which is not included in std namespace.
+String
+---------
+- `string::size_type`: 不要使用int来存储size()的返回值，防止溢出。索引和size都是用`size_type`类型。
+- 赋值操作：释放原始字符串占用的空间，分配新字符串所需的空间，将新字符串赋值到相应空间。
+- 相加操作：使用s1 += s2无需创建临时string，而s1 = s1 + s2需要。
+- `cctype`头文件判断字符类别：数字、字幕、标点、大小写、空白、十六进制。
 
 vector
 ---------
+- 值初始化：调用类的构造函数进行初始化，如果自定义类屏蔽了相应方法，编译将出错。
+- 优先使用`!=`而不是`<`来判断循环条件：由于部分类无法比较`<`。
+- 循环中倾向于每次循环中测试size的当前值。而且size()往往是内联函数，开销不大。
 
-Vector is a class template used to make class definition or function definition. When compiling the program, the program make some class definition.
+迭代器
+----------
+- 迭代器类型：决定了`*`的不同。
+- `const_iterator`: 避免修改元素。
+- 双向迭代器支持算术操作。
 
-const\_iterator and const iterator
-----------------------------------
-
-const\_iterator: iterator to const data.
-const iterator: const iterator to data.
-
-**iter1 - iter2**: The "-" of iterator is operation override function.
-return difference\_type
-
-**In General**:
-
-Use size\_t, difference\_size, string::size\_type, size\_t and so on.
-Use container more.
-Use Iterator and typedef more.
-
+bitset
+----------
+> 使用unsigned或者string类型来进行初始化“位向量”。可以进行某些位的翻转，统计，重置等。
 
 Chapter 4
 ==========
@@ -639,6 +616,10 @@ virtual base class: avoid to get two base object.
 
 C++ 11
 ===========
+
+
+参考资料
+==============
 
 
 注意: ex16_49~51需要重写
