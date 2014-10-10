@@ -11,21 +11,21 @@ C++ Primer 学习札记
 
 * [变量和基本类型](#变量和基本类型)
 * [标准库类型](#标准库类型)
-* [Chapter 4 ](#chapter_4)
-* [Chapter 5 ](#chapter_5)
-* [Chapter 6 ](#chapter_6)
-* [Chapter 7 ](#chapter_7)
-* [Chapter 8 Standard IO](#chapter_8)
-* [Chapter 9 ](#chapter_9)
-* [Chapter 10 ](#chapter_10)
-* [Chapter 11 ](#chapter_11)
-* [Chapter 12](#chapter_12)
-* [Chapter 13](#chapter_13)
-* [Chapter 14](#chapter_14)
-* [Chapter 15](#chapter_15)
-* [Chapter 16](#chapter_16)
-* [Chapter 17](#chapter_17)
-* [C++ 11](#c++_11)
+* [数组和指针](#数组和指针)
+* [表达式](#表达式)
+* [语句](#语句)
+* [函数](#函数)
+* [标准IO库](#标准IO库)
+* [顺序容器](#顺序容器)
+* [关联容器](#关联容器)
+* [泛型算法](#泛型算法)
+* [类](#类)
+* [复制控制](#复制控制)
+* [重载操作符与转换](#重载操作符与转换)
+* [面向对象编程](#面向对象编程)
+* [模板与泛型编程](#模板与泛型编程)
+* [高级主题](#高级主题)
+* [C++ 11/ C++ 13](#c++_11)
 
 
 变量和基本类型
@@ -42,6 +42,8 @@ C++ Primer 学习札记
 	- 由于整数表示范围有限，一旦运算出错，那么将会丢失高位，出现精度丢失的情况。
 	- 两个正数相加溢出时出现**负数**，两个负数相加结果可能为**正数或者负数**。可以使用`limits.h`来验证.
 - 类型转换
+	- 所有小于int的整数提升为int，其它提升为unsigned int。bool类型false为0，true为1。
+	- 显示转换：`static_cast`覆盖隐式转换，`const_cast`可以增删`const`属性，`reinterpret_cast`为位模式提供较低层次的解释。如`int *ip; char *pc = reinterpret_cast<char*>(ip);` 细颗粒地区分了类型转换权限，比旧式强制类型转换安全。
 
 **注意：**   
 1. **跨平台**: linux开发下使用[`stdint.h`](http://www.nongnu.org/avr-libc/user-manual/stdint_8h_source.html)中封装各类整型。`unitN_t`、`intN_t`、`intptr_t`和`unitptr_t`是较常用的几个类型。
@@ -104,267 +106,285 @@ bitset
 ----------
 > 使用unsigned或者string类型来进行初始化“位向量”。可以进行某些位的翻转，统计，重置等。
 
-Chapter 4
-==========
+
+数组和指针
+============
+
+初始化与赋值
+--------------
+- 若数组未初始化，仅全局和静态变量的值默认为0或者调用默认构造函数，其它值为未定义。
+- 如数组进行初始化，则未初始化的值默认赋予0或者调用默认构造函数。
+
+ptrdiff\_t vs size\_t
+-------------------
+`prtdiff_t`是signed类型，而`size_t`是unsigned类型。
 
 vector/iterator vs array/pointer
 --------------------------------
 
-Use vector more. **Is iterator better than pointer?**
-
-1. Size. Size of array is unknown. Array must use const expression to define dimension because the size of array is decided in compiling time.
-2. Security. Intialize pointer to NULL, then you will find the problem when use it without assigning.
+1. 大小。array大小未知，只有在编译的时候可以通过size来获得大小。
+2. 扩展。array无法动态扩展。
+3. 速度。array和pointer访问速度更快。iterator和vector需要进行函数调用。而array和pointer的相关操作可以由编译器直接转化或者进行优化。
 
 const pointer
 -------------
+自以为指向const的指针，指向的内容别人可能修改。
 
-```cpp
-typedef string *pstring;
-const pstring cstr;
-```
+    typedef string *pstring;
+    const pstring cstr;
 
-equals:
-`string \*const cstr`. 
+等价于
 
-const pointer to a string. Because pstring is string pointer.
+    string \*const cstr
 
-`const int \*ptr` is legal while `int \*const ptr` is not legal which is not initialized.
+string转化为c_str
+------------------
+    string str = "123";
+    const char *cstr = str.c_str();
 
-string and c-style string
---------------------------
-
-```cpp
-string str = "123";
-const char \*cstr = str.c\_str();
-```
-the change of str make influence on cstr.
-
-mutil-array
+多维数组
 ------------
 
-It is just a long array.
-```cpp
-int [3][4] ia = { {0}, {1}, {2} };
-typedef int int_array[4];
-int_array *ip = ia;
-```
+> 本质上是一个长array，&ia也是一个指针，只不过+-时，移动整块的空间.
 
-**In General**: Take care of edge when using Array and Pointer. Use typedef more. 
+	int ia[3][4]  = { {0}, {1}, {2} };
+	typedef int int_array[4];  // 定义int_arry是一个指向int[4]的指针
+	int_array *ip = ia;
+	int (*ip)[4] = ia;
 
+动态数组
+------------
+- 初始化：
+	- 数组`int *a = new int[10]();`,只能初始化为0。
+	- 单个元素`int *b = new int(2);`,可以初始化为各种值。
+- 释放delete：
+	- `delete[]`释放普通单元素指针时行为是未定义的。
 
-Chapter 5
+表达式
 ==========
 
-Type Conversion
+位操作符
 ---------------
+
+由于系统不能确保如何处理其操作数的符号位，所以使用**`unsigned`**整型来操作。
 
 static\_cast, dynamic\_cast, const\_cast, reinterpret\_cast
 
-Chapter 6
+前置操作符
+---------------
+使用前置操作符无需保存原始值。
+
+函数+操作符
+---------------
+`f1() * f2()`这种表达式中`f1()`和`f2()`的调用顺序是未知的。
+
+new后面检查bad_alloc异常的返回值
+-----------------------------
+
+
+语句
 ==========
 
-try and catch
---------------
-Exception will be throw upward oppsite with the backtrace.
-
-debug
+switch
 -----------
 
-**NDEBUG**
-`$ gcc -DNDEBUG main.c`
+`case标号`必须是整数常量表达式，包括枚举。不允许使用浮点数。
 
-**assert** will excute expression if NDEBUG not defined.
+宏DEBUG定义
+-----------
 
-**SOURCE FILE INFO**
+NDEBUG
+-----------
+`$ gcc -DNDEBUG main.c`，**assert**将不会执行
+
+编译时文件相关宏
+---------------
 ```__FILE__, __LINE__, __TIME__, __DATA__```
 
 
-Chapter 7
+函数
 ==========
 
-const argument
-----------------
-
-Be able to store const and non-const variable.
-
-Function Overload
+函数重载
 ------------------
 
-`void fun(int array[10])` and `void fun (int (&array)[10])` is different, the latter can only accept an array with length of 10.
+- `void fun(int array[10])` 和 `void fun (int (&array)[10])`是不同的，后者只接受长度为10的array，前者的10没有约束作用.
+- `void fun(const int i)`和`void fun(int i)`不能实现重载，为了和C语言兼容。但是`void fun(const Type t)`和`void fun(Type t)`可以重载。
 
-Take care of ambigous when using default argument.
-
-**Overload Resolution**: Do not convert type, Do not convert down type. `const` is not allowed to act as a differnet fuction variable. Do not use overload only if it is really more convenient.
-
-When It comes to reference and pointer, `const` can be used as different overload function.
-
-Lifetime and Scope
+数组形参
 ------------------
-The initialization expression of static variable will be excuted once.
 
-`inline function` is static file scope.
+下面三种形式等价，编译器将所有转化为`int*`
 
-Default Constructor
+    void fun(int*);
+    void fun(int[]);
+    void fun(int[10]);
+
+而
+    void fun(int (&arr)[10]);
+
+不会转化为`int*`，编译时需要同时检查长度和类型。
+
+多维数组除了第一维，其它维度都是元素类型的一部分，必须制定。
+    void fun(int (*arr)[10]);
+
+main函数
+--------------
+
+`<cstdlib>`中定义了`EXIT_FAILTURE`和`EXIT_SUCCESS`宏返回值。**不提供return的结果时未定义的**。
+
+默认实参
+---------------
+
+默认实参只能指定一次，尽量不要使用默认实参，容易混淆而且不能用于虚函数。
+
+实参类型匹配
+---------------
+
+**类型提升**(char到int，枚举到int) `>` **标准转换**(char到unsigned char, char到double等) 
+`>` 类类型转换
+
+函数指针
+---------------
+
+如下所示：
+
+    bool (*fun) (int, int)
+	typedef int (*pf)(int, int)
+
+
+标准IO库
+==========
+
+标准IO库应支持各类文件系统的标准输入输出以及数据的格式化输入输出。标准IO（控制台），文件IO（磁盘文件）和String IO（字符串流）。
+
+IO流对象不可复制和赋值
 --------------------
 
-Only initialize class type variable.
-
-Chapter 8
-==========
-
-Header File
--------------
-
-fstream and sstream is inheritanted form iostream.
-ostream and istream is two base stream for reading and writing.
-
-stream can not be copied for some reason.
+出于某种原因，标准库类型不允许复制和赋值，所以不能作为形参参数、返回值和容器内元素使用。
 
 IO state
 -----------
 
-```while (cin >> s)``` will just stop the reader if encounting bad, fail or eof situation.
+```while (cin >> s)```：当`cin.good()`不正确时，类型转换值为false。eofbit表示文件末尾，failbit表示可恢复错误，badbit表示系统级故障，不可恢复错误。
 
-```cpp
-int ival;
 
-while (cin >> ival, !cin.eof()) {
-	if (cin.bad())
-		throw runtime_error("IO stream corrupted");
+    int ival;
+    
+    while (cin >> ival, !cin.eof()) {
+    	if (cin.bad())
+    		throw runtime_error("IO stream corrupted");
+    
+    	if (cin.fail()) {
+    		cerr << "bad data, try again." << endl;
+    		cin.clear(iostream::failbit);
+    		continue;	
+    	}
+    
+    	//ok to process ival
+    }
 
-	if (cin.fail()) {
-		cerr << "bad data, try again." << endl;
-		cin.clear(iostream::failbit);
-		continue;	
-	}
 
-	//ok to process ival
-}
-```
-
-Buffer
+缓冲区
 ----------
 
-**When to flush buffer**: 
+**缓存输出的几种条件**: 
 
-1. program finished.
-2. endl.
-3. invoke stream function flush. ```cout << "first" << flush << "second << flush;``` or ```cout << unitbuf << "first" << "second" << nounitbuf;```
-4. using read and write stream (cin and cout are tied together and share one buffer in order to ensure that any output is earlier than input)
-5. buffer is full.
+1. 程序终止。
+2. 输出endl。
+3. 开启flush机制。 ```cout << "first" << flush << "second << flush;``` or ```cout << unitbuf << "first" << "second" << nounitbuf;```
+4. 标准输入输出共享缓冲区，出现交叉操作时。
+5. 缓冲区满。
 
-```cpp
-cout.tie(&cout);    //flush
-ostream& old_tie = cin.tie(&out);
-cin.tie(0);
-```
-
-**Pay Attention**: endl will flush but '\n' do not.
-
-fstream
------------
-
-The operation of fstream is similar with iostream which is its parent.
+    cout.tie(&cout);//flush
+    ostream& old_tie = cin.tie(&out);
+    cin.tie(0);
 
 reopen
 -----------
 
-We should `close` and `clear` a stream before we reopen it.
+用同一个fstream重新文件时，需要`close` 和`clear`保证fstream可用。否则会打开失败。
 
 
-Chapter 9
+顺序容器
 ==========
 
-Elements in container must be able to copy and assign, therefore ostream and reference is not allowed.
+> 容器只提供基本的遍历、增删改查操作。大多数额外操作则由算法库提供。
 
-```vector<Foo> bad(10); vector<Foo> ok(10,1);``` will call the constructor. 
+构造函数
+---------------
+- `vector<int> a(b);`其中a和b的容器类型和元素类型必须相同，因为仅定义了一个函数。若要支持不同的类型间赋值，使用迭代器。如`mid = a.begin() + a.size()/2; `其中`vector(a.begin(), mid)`即前半部分，`vector(mid, a.end())`即后半部分。
 
-Deque and Vector support Relation Operation other than `!=` and `==`.
-
-We should use `!=` to travesal container, because container other than deque and vector do not support ```>``` and so on.
-
-`eraze` and `push` will make iterator fail.
-
-use `value\_type`, `reference`, `const\_reference` to indicate type, then we need not know the type of container value.
-
-Front Back `[]` at()
---------------------
-
-Return: All function return reference.
-
-front(), back(), `[]` will not throw error, but at() will throw out_of_range error.
-
-Vector Growth
---------------
-
-Vector try its best to avoid resize too frequently.
-
-Container Adapter
+容器元素约束
 -----------------
+- 支持赋值和复制。
 
-stack ~= vector, list, deque
+迭代器失效
+------------------
 
-queue ~= list, deque (push\_front)
+- 没有机制来检测迭代器是否指针悬挂或者失效，所以尽量使迭代器有效范围变小，严格检查是否有增加和删除语句存在。
+- insert函数在指向元素前插入数据，返回新的元素。
+- 避免存储end操作返回的迭代器，直接使用`v.end()`。
+- 赋值操作使迭代器失效，swap操作则不使迭代器失效。
+- assign和`=`一样，将原容器清空。
 
-priority\_queue ~= vector, deque (random-acess)
 
-
-Chapter 10
+关联容器
 ============
 
-use set to record words.
+区别
+-------------
+- `erase()`返回`void`类型。不提供`assign()`。
+- 容器按照键的顺序存储。
+- 存储类型必须满足`<`操作。
+- insert后返回`pair`，pair包括键的iterator和bool。
 
-Add Element in Map
--------------------
+下标操作的副作用
+---------------
 
-```map["hello"]++;``` is useful in counting words.
+如果元素不存在，将会插入一个元素，其值为值初始化。
 
-Chapter 11
+查找multiset和multimap
+----------------------
+- 使用`find()`和`count()`。
+- `lower_bound()`、`upper_bound()`和`equal_range()`（返回pair）。
+
+泛型算法
+=============
+
+> 算法会对`==`操作符等有要求。
+
+只读算法
+-------------
+**初始值:类型转换**
+
+    vector<double> vec(2, 2.2);
+    double sum = accumulate(vec.begin(), vec.end(), 0);
+
+写容器元素的算法
+---------------
+- `fill_n`的算法需要使用插入迭代器适配器`back_inserter`来插入数据。（要求：容器必须有`push_back`方法）
+- `copy`方法写入未知个数到某个容器中；
+- 算法都有`_copy`和`_if`版本。
+- `if`函数使用谓词函数`bool isShorter(const string &s1, const string &s2)`。
+- 关联容器的键是`const`对象
+
+类
 ==========
 
-The more STL you use, the more time you save.
+const function的本质：将this指针编译为指向const数据的指针。
 
-Back\_inserter
---------------
+C++类编译
+------------
 
-Avoid insert data outside of Container. 
+先查看所有声明，再查看定义。
 
-Container Conversion Automatically
------------------------------------
+单参数构造函数应该定义为explicit。
 
-double will be converted to int automatically.
+static成员变量
+----------------
 
-```cpp
-vector<double> vec(2, 2.2);
-double sum = accumulate(vec.begin(), vec.end(), 0);
-```
-
-Const Iterator
---------------
-
-```const vector<int> vec;``` vec.begin() is a const iterator.
-
-Why the iterator of list is bi-direction.
-
-Use structure of algorithm to remember its function. (argument, name and iterator)
-
-Chapter 12
-==========
-
-> C++ class is able to control initialization, copying, assigning and destorying.
-
-> C++ class allow you to make your class be the same with other built-in class.
-
-
-Class
--------
-
-Definition of Class
--------------------
-
-> The definition of class and built-in type is defferent, which compiler do not malloc memory for it. (The definition of class and creation of object is equal to declaration and definition of built-in type)
-
-Class Definition is actually a declaring which do not malloc memory, so we should not give class member a definition in class.
+只有在类定义体外定义，const int和int才有地址空间。
 
 **Why is not allowed to define a class object in the same class?**
 
@@ -380,193 +400,50 @@ class Link {};
 ```
 
 It leads to recursive forever. [reference](http://stackoverflow.com/questions/22368353/why-is-it-not-allowed-to-define-a-class-object-in-the-same-class)
+所以在类内部定义本类的静态对象是ok的。因为静态对象不作为sizeof(类)的一部分
 
-**Why shouldn't we implentation every function in definition?**
-
-1. Function implemented in definition of Class is inline. Class definition is just like the definition of Struction. Function implemention in Class definition is inline function like Macro.
-2. Definition and Implementation should better be departed which is useful for uplevel.
-
-this
-----------
-
-It is useful when we want reference the object but its members. (return itself)
-
-
-**Why should we add Class::?**
-
-1. Function in file is __Global__ by default.
-
-**Every object share the same function data, how did the function know which data he should operate on?**
-
-They use pointer __this__ to point data which is very similar with structure. 
-
-**How did C++ protect data?**
-
-1. public\private\protected
-2. const function `double avg\_price() const;`
-
-
-Exercise Section 12-1
---------------------
-
-**const function**: In order to protect member, const function can only include const function.
-
-**Is our class definitly safe?**: Never, we can use unit test to make sure that our function is safe under most situation. However, if we make our data member to be public, the status of our object is unstable.
-
-**const string**: `const string &data = "hello";` we must use `const` to ensure only-read string.
-
-**Use more private utility function**: for example, `display()` function.
-
-Constructor Function
---------------------
-
-**Initialization list**: we can only initial const and reference variable ininitialization list. It's the only chance.
-
-Code below is wrong. Constructor function has two phases: Initialization and computation. ci and ri is already initialied which can't be assigned in function body(computation phase). Intialization list is Initialization Phase.
-
-```cpp
-class ConstRef {
-    public:
-        ConstRef (int ii) {
-            i = ii;
-            ci = ii;
-            ri = i;
-        }
-    private:
-        int i;
-        const int ci;
-        int &ri;
-};
-``` 
-
-**Besides**: It's faster in initialization list than computation.
-
-Constructor with Default Argument
----------------------------------
-
-```cpp
-class Person {
-    public:
-    Person(const string &_str = ""): str(_str) {}
-    Person(istream &_is = cin): is(_is) {}
-
-};
-```
-
-As for `Person p;`, it introduce ambigous.
-
-static
---------
-
-```cpp
-class Bar {
-    public:
-    // ...
-    private:
-    static Bar mem1; // ok
-    Bar *mem2;
-    // ok
-    Bar mem3;
-    // error
-};
-
-```
-
-Chapter 13
+复制控制
 ===========
 
-Copy Constructor
-----------------
-
-> Copy Initialization build a temp object, then call direct-initialization.
-
-> copy initialization(=) always create a temp object, then use copy constructor to copy. It's used for being compatiable with C syntax which use `=` to initial data.
-
-```cpp
-string null_book = "9-999-99999-9"; // copy-initialization
-string dots(10, '.'); // direct-initialization
-string empty_copy = string(); // copy-initialization
-string empty_direct; // direct-initialization
-vector<string> svec(5); // copy-initialization
-```
-
-**When should we make our copy-initialization?**
-
-There are pointer members which need to copy data, or we want to do some extra job besides copy members one by one. 
-
-When Do we need override direct-initialization. When We need to allocate data, make a unique id and so on.
-
-**How to avoid direct-initialization?**
-
-Make a private dirrect initialization function declaration, then friend class\function and object can not use it.
-
-
-Scope
+智能指针
 ------------
 
-`const Object&` can not protect the pointer value of object.
-
-We can change the value of object in the same kind of class object.
-
-```cpp
-class test {
-    public:
-        void change(test t) { t.a = 3;}
-    private:
-        int a = 3;
-}
-```
-
-Assigning Function
------------------
+支持自动析构，支持赋值和复制。
 
 
-Destructor
-------------------
+重载操作符与转换
+==============
 
-while local scope finished(encounter '}'), destructor is invoked.
+调用操作符()
+--------------
 
-User-defined destructor is used to free memory in constructor or run-time of object. If we need user-defined destructor, we also need copy initialization and direct initialization.
+将某个对象的`()`操作符重载, 函数对象比函数更加的灵活
 
-Dangling Pointers
-------------------
+    struct BSS {
+    	int operator() (int val) {
+    		return val < 0 ? -val : val;
+    	}
+    };
 
-Data a pointer points to is deleted. The pointer is now dangling.
+函数对象适配器
+-------------
 
-Smart Pointers
---------------------
+`bind1st`和`bind2nd`以及`not1`和`not2`。
 
-use counter with pointer class member.
+转换与类类型
+--------------
 
-Chapter 14
+`operator bool() { return false; }
+
+
+面向对象编程
 ============
 
-It's not allowed to override operator on two built-in type.
+> 了解对象内存存储模型, 参考深入理解《C++对象模型》。
 
-> Common override operator: ==, <<, >>, !.
 
-> No `short-cut` on `||` and `&&`
 
-> sort use `<` and find use `==`
-
-`++` and `--` with prefix and postfix which need to save the state before.
-
-Function object
-----------------
-
-**Logical-Math-Relational**
-In functional header, there are some Function object. object() is euqal to function. 
-
-Chapter 15
-============
-
-> Inheriance make us define similar classes, while Dynamic Bind let us ignore differences between similar classes.
-
-> There are static type and dynamic type about Reference and Pointer. They may be different.
-
-> Handler
-
-Chapter 16
+模板与泛型编程
 ============
 
 模板: 算法和容器支持不同的类型. 同一个sort,vector支持不同的类型. 当然类型必须满足这些算法和容器的一些要求. 如果你不满足这些要求, 效率低, 报错或者结果错误(参考effective STL).
@@ -595,23 +472,23 @@ Non-type template argument can get the length of array automatically.
 **Type Conversion**: The arguments should all be converted or not.
 
 
-Chapter 17
+高级主题
 ============
 
-Exception
+异常
 ----------
 
-The variable in local scope will be cleared when exception is threw. Therefore, the data in exception should be in global scope.
+**不使用异常的原因：**
 
-Namespace
+- 深度调用时，中间的函数必须小心处理异常；用户可能使用异常不当。[参考](http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Exceptions)
+
+
+命名空间
 -----------
 
-`::` is global namespace.
+`::` is global namespace.使用未命名的命名空间来定义仅在本文件内使用的函数。
 
-MutiInheriance
---------------
 
-virtual base class: avoid to get two base object.
 
 
 C++ 11
@@ -620,11 +497,3 @@ C++ 11
 
 参考资料
 ==============
-
-
-注意: ex16_49~51需要重写
-注意: ex17_16~17需要重写
-注意: ex17_39~42需要重写
-注意: ex13_16~19需要重写
-注意: ex9_40~43需要重写
-注意: ex10_30~33需要重写
